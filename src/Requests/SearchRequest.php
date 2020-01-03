@@ -1,7 +1,7 @@
 <?php
 namespace Yjtec\Adv\Requests;
 use Illuminate\Foundation\Http\FormRequest;
-
+use Illuminate\Validation\Rule;
 class SearchRequest extends FormRequest
 {
     /**
@@ -22,12 +22,17 @@ class SearchRequest extends FormRequest
     public function rules()
     {
         return [
-            'pageSize' => ''
+            'status' => [
+                'sometimes',
+                Rule::in(['close','open'])
+            ]
         ];
     }
 
     public function attributes()
     {
-        return [];
+        return [
+            'status' => '状态'
+        ];
     }
 }

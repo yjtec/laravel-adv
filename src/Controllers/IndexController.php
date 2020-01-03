@@ -26,6 +26,7 @@ class IndexController extends Controller
      *     operationId="AdvSearch",
      *     @OA\Parameter(description="广告类型",in="query",name="type",@OA\Schema(type="string")),
      *     @OA\Parameter(description="平台",in="query",name="platform",@OA\Schema(type="string")),
+     *     @OA\Parameter(description="状态:close 关闭 open 打开",in="query",name="status",@OA\Schema(type="string")),
      *     @OA\Parameter(description="每页显示条数",in="query",name="pageSize",@OA\Schema(type="integer")),
      *     @OA\Response(
      *         response=200,
@@ -38,6 +39,7 @@ class IndexController extends Controller
     {
         $pageSize = 10;
         $where    = [];
+        $status = ['close'=>-1,'open'=>1];
         if ($request->has('pageSize')) {
             $pageSize = $request->pageSize;
         }
@@ -46,6 +48,10 @@ class IndexController extends Controller
         }
         if ($request->has('platform')) {
             $where[] = ['platform_id', $request->platform];
+        }
+
+        if($request->has('status')){
+            $where[] =['status',$status[$request->status]];
         }
         $list = $this->advM->where($where)->paginate($pageSize);
         return new AdvsResource($list);

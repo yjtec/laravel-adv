@@ -27,6 +27,7 @@ class AdvResource extends Resource
         return [
             'id'          => $this->id,
             'pic'         => $this->pic,
+            'pic_url'     => $this->pic_url,
             'link'        => $this->link,
             'type_id'     => $this->type_id,
             'platform_id' => $this->platform_id,

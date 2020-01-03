@@ -25,7 +25,7 @@ class Advs extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'data' => $this->collection,
+            'data' => AdvResource::collection($this),
             'errcode' => 0,
             'errmsg' => 'success'
         ];
