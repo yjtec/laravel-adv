@@ -26,6 +26,7 @@ class AdvResource extends Resource
     {
         return [
             'id'          => $this->id,
+            'title'       => $this->title,
             'pic'         => $this->pic,
             'pic_url'     => $this->pic_url,
             'link'        => $this->link,
@@ -34,6 +35,7 @@ class AdvResource extends Resource
             'status'      => $this->status,
             'remark'      => $this->remark,
             'weight'      => $this->weight,
+            'created_at'  => (string) $this->created_at,
         ];
     }
     public function with($request)
