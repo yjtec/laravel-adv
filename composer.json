@@ -1,0 +1,15 @@
+{
+  "name": "yjtec/laravel-adv",
+  "description": "yjtec adv manage",
+  "authors": [{
+    "name": "kidkang",
+    "email": "723616880@qq.com"
+  }],
+  "autoload": {
+    "psr-4": {
+      "Yjtec\\Adv\\": "src/"
+    }
+  },
+  "minimum-stability": "dev",
+  "require": {}
+}
