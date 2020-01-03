@@ -11,5 +11,13 @@
     }
   },
   "minimum-stability": "dev",
-  "require": {}
+  "require": {},
+  "extra": {
+    "laravel": {
+      "providers": ["Yjtec\\Adv\\Providers\\AppServiceProvider", "Yjtec\\Adv\\Providers\\RouteServiceProvider"],
+      "aliases": {
+        "Adv": "Yjtec\\Adv\\Facades\\Adv"
+      }
+    }
+  }
 }
