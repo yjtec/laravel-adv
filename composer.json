@@ -10,7 +10,7 @@
       "Yjtec\\Adv\\": "src/"
     }
   },
-  "minimum-stability": "dev",
+  "minimum-stability": "dev-master",
   "require": {},
   "extra": {
     "laravel": {
