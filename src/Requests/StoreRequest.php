@@ -3,7 +3,20 @@ namespace Yjtec\Adv\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-
+/**
+ * @OA\Parameter(
+ *     parameter="postAdvPlatform",
+ *     name="platform_id[]",
+ *     in="query",
+ *     description="平台ID",
+ *     @OA\Schema(
+ *         type="array",
+ *         @OA\Items(
+ *             type="string",
+ *         )
+ *     )
+ * )
+ */
 /**
  * @OA\RequestBody(
  *     request="AdvStoreRequestBody",
@@ -34,11 +47,6 @@ use Illuminate\Foundation\Http\FormRequest;
  *                  type="string"
  *             ),
  *             @OA\Property(
- *                  property="platform_id",
- *                  description="平台ID:默认为0 可不传",
- *                  type="integer"
- *             ),
- *             @OA\Property(
  *                  property="type_id",
  *                  description="类型:默认为0 可不传（主要用于多个地方的设置）",
  *                  type="integer"
@@ -48,7 +56,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *                  description="排序：默认0 不得大于255",
  *                  type="integer"
  *             ),
- *             
+ *
  *         )
  *     )
  * )
@@ -73,7 +81,7 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:255'
+            'title' => 'required|max:255',
         ];
     }
 

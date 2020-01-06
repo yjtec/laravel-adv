@@ -63,7 +63,7 @@ class IndexController extends Controller
      *     summary="打开或关闭banner",
      *     operationId="AdvOperator",
      *     @OA\Parameter(description="ID",in="path",name="id",required=true,@OA\Schema(type="string")),
-     *     @OA\Parameter(description="操作close关闭open打开",in="path",name="operator",required=true,@OA\Schema(type="string")),
+     *     @OA\Parameter(description="操作close关闭open打开",in="path",name="operator",required=true,@OA\Schema(type="string",enum={"open","close"})),
      *     @OA\Response(
      *         response=200,
      *         description="成功",
@@ -115,18 +115,31 @@ class IndexController extends Controller
      *     tags={"Adv"},
      *     summary="新增广告接口",
      *     operationId="AdvStore",
+     *     @OA\Parameter(ref="#/components/parameters/postAdvPlatform"),
      *     @OA\Response(
      *         response=200,
      *         description="pet response",
-     *         @OA\JsonContent(ref="#/components/schemas/UploadReturn")
+     *         @OA\JsonContent(ref="#/components/schemas/Success")
      *     ),
      *     @OA\RequestBody(ref="#/components/requestBodies/AdvStoreRequestBody"),
      * )
      */
     public function store(StoreRequest $request)
     {
-        $data = $request->only(['title', 'pic', 'remark', 'link', 'platform_id', 'type_id', 'weight']);
-        $adv  = $this->advM::create($data);
+        $data = $request->only(['title', 'pic', 'remark', 'link', 'type_id', 'weight']);
+        if($request->has('platform_id')){
+            $platform_id = $request->platform_id;
+            if(is_array($platform_id)){
+                foreach($platform_id as $k){
+                    $this->advM::create(array_merge($data,['platform_id'=>$k]));
+                }
+            }else{
+                $this->advM::create(array_merge($data,['platform_id'=>$platform_id]));
+            }
+
+        }else{
+            $adv  = $this->advM::create($data);
+        }
         tne('SUCCESS');
     }
     /**
