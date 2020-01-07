@@ -53,7 +53,7 @@ class IndexController extends Controller
         if($request->has('status')){
             $where[] =['status',$status[$request->status]];
         }
-        $list = $this->advM->where($where)->paginate($pageSize);
+        $list = $this->advM->where($where)->orderBy('id','desc')->paginate($pageSize);
         return new AdvsResource($list);
     }
     /**
