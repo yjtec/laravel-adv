@@ -23,8 +23,9 @@ class Adv extends Model
     protected $fillable = [
         'title', 'pic', 'link', 'remark', 'type_id', 'platform_id', 'type_id', 'weight',
     ];
-
-    protected $visible = ['id','title','pic','link','status','weight','created_at'];
+    protected $appends =['pic_url'];
+    
+    protected $visible = ['id','title','pic','link','status','weight','pic_url','created_at'];
 
     public function getPicUrlAttribute(){
         $pic = $this->attributes['pic'];
